@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>MORIRE TECH | Portfolio</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #050505;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    /* NAVBAR */
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 22px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(5,5,5,0.8);
+      backdrop-filter: blur(15px);
+      z-index: 1000;
+      border-bottom: 1px solid #222;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .logo-mark {
+      width: 72px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      border-radius: 16px;
+      background: rgba(0, 255, 136, 0.08);
+      border: 1px solid rgba(0, 255, 136, 0.22);
+      box-shadow: 0 0 25px rgba(0, 255, 136, 0.12);
+    }
+
+    .logo-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .logo-text {
+      font-size: 30px;
+    }
+
+    .logo-text span {
+      color: #00ff88;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 48px;
+      height: 48px;
+      background: transparent;
+      border: 1px solid #333;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      width: 22px;
+      height: 2px;
+      background: white;
+      border-radius: 10px;
+      display: block;
+      transition: 0.3s ease;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #00ff88;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 100px 8%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      animation: slideLeft 1.2s ease;
+    }
+
+    .hero small {
+      color: #00ff88;
+      letter-spacing: 3px;
+    }
+
+    .hero h1 {
+      font-size: clamp(50px, 8vw, 100px);
+      line-height: 1;
+      margin: 20px 0;
+    }
+
+    .hero h1 span {
+      color: #00ff88;
+    }
+
+    .typing {
+      font-size: 28px;
+      color: #aaa;
+      min-height: 40px;
+    }
+
+    .description {
+      margin: 25px 0;
+      max-width: 600px;
+      color: #999;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      padding: 15px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.4s;
+    }
+
+    .primary {
+      background: #00ff88;
+      color: black;
+    }
+
+    .primary:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 30px #00ff8866;
+    }
+
+    .secondary {
+      border: 1px solid #333;
+      color: white;
+    }
+
+    .secondary:hover {
+      border-color: #00ff88;
+      color: #00ff88;
+    }
+
+    /* FLOATING CIRCLE */
+
+    .circle {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      right: -150px;
+      top: 20%;
+      border-radius: 50%;
+      border: 1px solid #00ff8833;
+      box-shadow: 0 0 100px #00ff8815;
+      animation: float 5s ease-in-out infinite;
+    }
+
+    /* SECTIONS */
+
+    section {
+      padding: 120px 8%;
+      position: relative;
+    }
+
+    .section-title {
+      font-size: 50px;
+      margin-bottom: 60px;
+    }
+
+    .section-title span {
+      color: #00ff88;
+    }
+
+    /* ABOUT */
+
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-text {
+      color: #aaa;
+      line-height: 1.8;
+      font-size: 18px;
+    }
+
+    .about-card {
+      padding: 40px;
+      border: 1px solid #222;
+      border-radius: 25px;
+      background: #0b0b0b;
+      transition: 0.5s;
+    }
+
+    .about-card:hover {
+      transform: rotateY(8deg) translateY(-10px);
+      border-color: #00ff88;
+    }
+
+    /* SKILLS */
+
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+    }
+
+    .skill {
+      padding: 35px;
+      background: #0b0b0b;
+      border: 1px solid #222;
+      border-radius: 20px;
+      text-align: center;
+      transition: 0.4s;
+    }
+
+    .skill:hover {
+      transform: translateY(-10px);
+      border-color: #00ff88;
+      box-shadow: 0 15px 40px #00ff8810;
+    }
+
+    .skill h3 {
+      margin-top: 15px;
+    }
+
+    /* PROJECT SLIDER */
+
+    .projects-wrapper {
+      overflow: hidden;
+    }
+
+    .projects {
+      display: flex;
+      gap: 25px;
+      width: max-content;
+      animation: slideProjects 25s linear infinite;
+    }
+
+    .projects:hover {
+      animation-play-state: paused;
+    }
+
+    .project {
+      width: 350px;
+      min-height: 300px;
+      padding: 30px;
+      background: #0b0b0b;
+      border: 1px solid #222;
+      border-radius: 25px;
+      transition: 0.4s;
+    }
+
+    .project:hover {
+      transform: scale(1.04);
+      border-color: #00ff88;
+    }
+
+    .project-number {
+      color: #00ff88;
+      font-size: 14px;
+    }
+
+    .project h3 {
+      font-size: 30px;
+      margin: 30px 0 15px;
+    }
+
+    .project p {
+      color: #888;
+      line-height: 1.6;
+    }
+
+    .project a {
+      display: inline-block;
+      margin-top: 30px;
+      color: #00ff88;
+      text-decoration: none;
+    }
+
+    /* SERVICES */
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .service {
+      padding: 40px;
+      border: 1px solid #222;
+      border-radius: 25px;
+      background: linear-gradient(145deg, #0d0d0d, #070707);
+      transition: 0.5s;
+    }
+
+    .service:hover {
+      transform: translateY(-15px);
+      border-color: #00ff88;
+    }
+
+    .service h3 {
+      font-size: 25px;
+      margin-bottom: 15px;
+    }
+
+    .service p {
+      color: #888;
+      line-height: 1.6;
+    }
+
+    /* CONTACT */
+
+    .contact {
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-size: clamp(45px, 7vw, 90px);
+      margin-bottom: 25px;
+    }
+
+    .contact p {
+      color: #888;
+      margin-bottom: 40px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 40px 8%;
+      border-top: 1px solid #222;
+      display: flex;
+      justify-content: space-between;
+      color: #666;
+    }
+
+    /* ANIMATIONS */
+
+    @keyframes slideLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-100px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes float {
+      0%,100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-30px);
+      }
+    }
+
+    @keyframes slideProjects {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* MOBILE */
+
+    @media(max-width: 800px) {
+
+      nav {
+        padding: 14px 5%;
+        min-height: 72px;
+      }
+
+      .logo {
+        gap: 0;
+      }
+
+      .logo-text {
+        display: none;
+      }
+
+      .logo-mark {
+        width: 56px;
+        height: 56px;
+        padding: 8px;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      nav ul {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 16px 5% 20px;
+        background: rgba(5,5,5,0.96);
+        border-bottom: 1px solid #222;
+      }
+
+      nav ul.open {
+        display: flex;
+      }
+
+      nav a {
+        font-size: 14px;
+      }
+
+      .about {
+        grid-template-columns: 1fr;
+      }
+
+      .services {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 60px;
+      }
+
+      .circle {
+        opacity: 0.3;
+      }
+
+      .project {
+        width: 280px;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+
+  <nav>
+    <div class="logo" aria-label="MORIRE TECH home">
+      <div class="logo-mark">
+        <img src="Blue_Cloud_Flat_Technology_Free_Logo-removebg-preview (1).png" alt="MORIRE TECH logo" />
+      </div>
+      <div class="logo-text">MORIRE<span>TECH</span></div>
+    </div>
+
+    <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" onclick="const menu=this; const nav=document.getElementById('navMenu'); const isOpen=nav.classList.toggle('open'); menu.setAttribute('aria-expanded', String(isOpen));">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <ul id="navMenu">
+      <li><a href="#home" onclick="document.getElementById('navMenu').classList.remove('open'); document.querySelector('.menu-toggle').setAttribute('aria-expanded','false');">Home</a></li>
+      <li><a href="#about" onclick="document.getElementById('navMenu').classList.remove('open'); document.querySelector('.menu-toggle').setAttribute('aria-expanded','false');">About</a></li>
+      <li><a href="#skills" onclick="document.getElementById('navMenu').classList.remove('open'); document.querySelector('.menu-toggle').setAttribute('aria-expanded','false');">Skills</a></li>
+      <li><a href="#projects" onclick="document.getElementById('navMenu').classList.remove('open'); document.querySelector('.menu-toggle').setAttribute('aria-expanded','false');">Projects</a></li>
+      <li><a href="#contact" onclick="document.getElementById('navMenu').classList.remove('open'); document.querySelector('.menu-toggle').setAttribute('aria-expanded','false');">Contact</a></li>
+    </ul>
+  </nav>
+
+
+  <!-- HERO -->
+
+  <section class="hero" id="home">
+
+    <div class="circle"></div>
+
+    <div class="hero-content">
+
+      <small>WELCOME TO MY WORLD</small>
+
+      <h1>
+        MORIRE<br>
+        <span>TECH.</span>
+      </h1>
+
+      <div class="typing" id="typing"></div>
+
+      <p class="description">
+        I design and build modern digital experiences,
+        combining creativity, technology and product thinking
+        to create websites that people remember.
+      </p>
+
+      <div class="buttons">
+
+        <a href="#projects" class="btn primary">
+          View My Work
+        </a>
+
+        <a href="#contact" class="btn secondary">
+          Let's Talk
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ABOUT -->
+
+  <section id="about">
+
+    <h2 class="section-title">
+      About <span>Me.</span>
+    </h2>
+
+    <div class="about">
+
+      <div class="about-text">
+
+        <p>
+          I'm a creative developer and product designer
+          passionate about building digital products that
+          look beautiful and work beautifully.
+        </p>
+
+        <br>
+
+        <p>
+          My approach combines front-end development,
+          UI/UX design and modern creative coding.
+        </p>
+
+      </div>
+
+      <div class="about-card">
+
+        <h3>My Philosophy</h3>
+
+        <br>
+
+        <p>
+          "Don't just build websites.
+          Build experiences."
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- SKILLS -->
+
+  <section id="skills">
+
+    <h2 class="section-title">
+      My <span>Skills.</span>
+    </h2>
+
+    <div class="skills">
+
+      <div class="skill">
+        <div>01</div>
+        <h3>HTML</h3>
+      </div>
+
+      <div class="skill">
+        <div>02</div>
+        <h3>CSS</h3>
+      </div>
+
+      <div class="skill">
+        <div>03</div>
+        <h3>JavaScript</h3>
+      </div>
+
+      <div class="skill">
+        <div>04</div>
+        <h3>React</h3>
+      </div>
+
+      <div class="skill">
+        <div>05</div>
+        <h3>UI/UX</h3>
+      </div>
+
+      <div class="skill">
+        <div>06</div>
+        <h3>Figma</h3>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- PROJECTS -->
+
+  <section id="projects">
+
+    <h2 class="section-title">
+      Selected <span>Work.</span>
+    </h2>
+
+    <div class="projects-wrapper">
+
+      <div class="projects">
+
+        <div class="project">
+          <span class="project-number">01</span>
+          <h3>Fintech App</h3>
+          <p>
+            A modern financial dashboard with
+            beautiful interactions and responsive design.
+          </p>
+          <a href="#">View Project →</a>
+        </div>
+
+        <div class="project">
+          <span class="project-number">02</span>
+          <h3>E-Commerce</h3>
+          <p>
+            A premium online shopping experience
+            designed for modern brands.
+          </p>
+          <a href="#">View Project →</a>
+        </div>
+
+        <div class="project">
+          <span class="project-number">03</span>
+          <h3>AI Platform</h3>
+          <p>
+            A futuristic AI interface focused on
+            simplicity and usability.
+          </p>
+          <a href="#">View Project →</a>
+        </div>
+
+        <div class="project">
+          <span class="project-number">04</span>
+          <h3>Portfolio</h3>
+          <p>
+            A creative developer portfolio with
+            immersive animations.
+          </p>
+          <a href="#">View Project →</a>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- SERVICES -->
+
+  <section>
+
+    <h2 class="section-title">
+      What I <span>Do.</span>
+    </h2>
+
+    <div class="services">
+
+      <div class="service">
+
+        <h3>Web Development</h3>
+
+        <p>
+          Fast, responsive and interactive websites
+          built with modern technologies.
+        </p>
+
+      </div>
+
+      <div class="service">
+
+        <h3>Product Design</h3>
+
+        <p>
+          User-centered interfaces and digital
+          products designed for real people.
+        </p>
+
+      </div>
+
+      <div class="service">
+
+        <h3>Creative Coding</h3>
+
+        <p>
+          Experimental websites, animations and
+          interactive experiences.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONTACT -->
+
+  <section class="contact" id="contact">
+
+    <h2>
+      Let's build<br>
+      <span>something.</span>
+    </h2>
+
+    <p>
+      Have an idea? Let's turn it into a digital experience.
+    </p>
+
+    <a href="https://wa.me/2348147286055?text=Hello%20I%20saw%20your%20portfolio%20and%20I%20want%20to%20work%20with%20you." class="btn primary" target="_blank" rel="noopener noreferrer">
+      Contact Me
+    </a>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div>
+      © 2026 MORIRE TECH
+    </div>
+
+    <div>
+      Design • Code • Create
+    </div>
+
+  </footer>
+
+
+  <!-- TYPING ANIMATION -->
+
+  <script>
+
+    const words = [
+      "Front-End Developer",
+      "Product Designer",
+      "Vibe Coder",
+      "Creative Developer"
+    ];
+
+    let wordIndex = 0;
+    let letterIndex = 0;
+    let deleting = false;
+
+    const typing = document.getElementById("typing");
+
+    function typeEffect() {
+
+      const currentWord = words[wordIndex];
+
+      if (!deleting) {
+
+        typing.textContent =
+          currentWord.substring(0, letterIndex + 1);
+
+        letterIndex++;
+
+        if (letterIndex === currentWord.length) {
+
+          deleting = true;
+
+          setTimeout(typeEffect, 1500);
+
+          return;
+        }
+
+      } else {
+
+        typing.textContent =
+          currentWord.substring(0, letterIndex - 1);
+
+        letterIndex--;
+
+        if (letterIndex === 0) {
+
+          deleting = false;
+
+          wordIndex++;
+
+          if (wordIndex === words.length) {
+            wordIndex = 0;
+          }
+
+        }
+
+      }
+
+      setTimeout(typeEffect, deleting ? 50 : 100);
+    }
+
+    typeEffect();
+
+
+
+
